@@ -33,7 +33,7 @@ public class Client : MonoBehaviour
 
 		if(!networkStream.DataAvailable)
 		{
-			label.text = "[no data]";
+			//label.text = "[no data]";
 			return;
 		}
 
