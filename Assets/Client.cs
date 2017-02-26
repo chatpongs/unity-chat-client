@@ -13,9 +13,9 @@ public class Client : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        clientSocket = new System.Net.Sockets.TcpClient();
-        clientSocket.Connect("192.168.100.8", 5000);
         Debug.Log("Running the client");
+        clientSocket = new System.Net.Sockets.TcpClient();
+        clientSocket.Connect("128.199.85.94", 8000);
 		connected = true;
     }
 
@@ -33,7 +33,6 @@ public class Client : MonoBehaviour
 
 		if(!networkStream.DataAvailable)
 		{
-			//label.text = "[no data]";
 			return;
 		}
 
@@ -54,7 +53,7 @@ public class Client : MonoBehaviour
     public void SendChat()
     {
         NetworkStream networkStream = clientSocket.GetStream();
-        string message = "Hello world";
+        string message = "Hello world\n";
         Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
         networkStream.Write(sendBytes, 0, sendBytes.Length);
         networkStream.Flush();
