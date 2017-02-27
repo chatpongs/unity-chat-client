@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     {
         Debug.Log("Running the client");
         clientSocket = new System.Net.Sockets.TcpClient();
-        clientSocket.Connect("128.199.85.94", 8000);
+        clientSocket.Connect("192.168.100.9", 5000);
 		connected = true;
     }
 
@@ -48,6 +48,24 @@ public class Client : MonoBehaviour
         {
             Debug.Log("Exception error:" + ex.ToString());
         }
+    }
+
+    public void EnterRoom()
+    {
+        NetworkStream networkStream = clientSocket.GetStream();
+        string message = "login|u0001|user_data\n";
+        Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
+        networkStream.Write(sendBytes, 0, sendBytes.Length);
+        networkStream.Flush();
+    }
+
+    public void Auction()
+    {
+        NetworkStream networkStream = clientSocket.GetStream();
+        string message = "auction|a0001|u0001|20M|emo1\n";
+        Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
+        networkStream.Write(sendBytes, 0, sendBytes.Length);
+        networkStream.Flush();
     }
 
     public void SendChat()
