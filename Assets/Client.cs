@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     {
         Debug.Log("Running the client");
         clientSocket = new System.Net.Sockets.TcpClient();
-        clientSocket.Connect("192.168.100.9", 5000);
+        clientSocket.Connect("139.59.101.185", 5000);
 		connected = true;
     }
 
